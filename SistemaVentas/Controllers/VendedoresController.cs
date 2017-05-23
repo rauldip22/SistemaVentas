@@ -9,6 +9,7 @@ namespace SistemaVentas.Controllers
 {
     public class VendedoresController : Controller
     {
+        GestorVendedores gestor = new GestorVendedores();
         // GET: Vendedores
         public ActionResult Index()
         {
@@ -31,6 +32,7 @@ namespace SistemaVentas.Controllers
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
+            
             try
             {
                 // TODO: Add insert logic here
@@ -39,7 +41,7 @@ namespace SistemaVentas.Controllers
                 vendedor.Nombre = collection["Nombre"];
                 vendedor.Email = collection["Email"];
 
-                               
+                gestor.Guardar(vendedor);                            
 
                 return RedirectToAction("Index");
             }
@@ -48,6 +50,12 @@ namespace SistemaVentas.Controllers
                 return View();
             }
         }
+
+        public ActionResult Listar()
+        {
+            var vendedores = gestor.Listar();
+            return View(vendedores);
+        } 
 
         // GET: Vendedores/Edit/5
         public ActionResult Edit(int id)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SistemaVentas.Models.AccesoDatos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,9 +8,15 @@ namespace SistemaVentas.Models
 {
     public class GestorVendedores
     {
+        RepositorioVendedores repo = new RepositorioVendedores();
         public void Guardar(Vendedores vendedor)
         {
-            
+            repo.Guardar(vendedor);
+        }
+
+        public List<Vendedores> Listar()
+        {
+            return repo.Listar();
         }
     }
 }

@@ -154,7 +154,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccesoDatos\RespositorioVendedores.cs" />
+    <Compile Include="Models\AccesoDatos\RepositorioVendedores.cs" />
     <Compile Include="Models\GestorVendedores.cs" />
     <Compile Include="Models\Model1.Context.cs">
       <AutoGen>True</AutoGen>
@@ -237,6 +237,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Vendedores\Create.cshtml" />
+    <Content Include="Views\Vendedores\Listar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

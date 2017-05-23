@@ -5,13 +5,22 @@ using System.Web;
 
 namespace SistemaVentas.Models.AccesoDatos
 {
-    public class RespositorioVendedores
+    public class RepositorioVendedores
     {
+        public RepositorioVendedores()
+        {
+
+        }
         SistemaVentasEntities SistemaDB = new SistemaVentasEntities();
         public void Guardar(Vendedores vendedor)
         {
             SistemaDB.Vendedores.Add(vendedor);
             SistemaDB.SaveChanges();
+        }
+
+        public List<Vendedores> Listar()
+        {
+            return SistemaDB.Vendedores.ToList();
         }
     }
 }
