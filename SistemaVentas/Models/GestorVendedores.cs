@@ -18,5 +18,14 @@ namespace SistemaVentas.Models
         {
             return repo.Listar();
         }
+
+        public void Eliminar(int id)
+        {
+            repo.Eliminar(id);
+        }
+         public void Modificar(Vendedores vendedor)
+        {
+            repo.Modificar(vendedor);
+        }
     }
 }

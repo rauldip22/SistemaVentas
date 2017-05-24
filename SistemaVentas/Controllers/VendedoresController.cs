@@ -43,7 +43,7 @@ namespace SistemaVentas.Controllers
 
                 gestor.Guardar(vendedor);                            
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Listar");
             }
             catch
             {
@@ -69,9 +69,14 @@ namespace SistemaVentas.Controllers
         {
             try
             {
-                // TODO: Add update logic here
+                Vendedores vendedor = new Vendedores();
+                vendedor.IdVendedor = id;
+                vendedor.Apellido = collection["Apellido"];
+                vendedor.Nombre = collection["Nombre"];
+                vendedor.Email = collection["Email"];
+                gestor.Modificar(vendedor);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Listar");
             }
             catch
             {
@@ -91,9 +96,8 @@ namespace SistemaVentas.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                gestor.Eliminar(id);
+                return RedirectToAction("Listar");
             }
             catch
             {
