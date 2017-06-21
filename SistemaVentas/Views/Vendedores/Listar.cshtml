@@ -7,7 +7,7 @@
 <h2>Listar</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear nuevo", "Create")
 </p>
 <table class="table">
     <tr>
@@ -35,9 +35,9 @@
             @Html.DisplayFor(modelItem => item.Email)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdVendedor }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdVendedor }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdVendedor })
+            @Html.ActionLink("Editar", "Edit", new { id=item.IdVendedor }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.IdVendedor }) |
+            @Html.ActionLink("Borrar", "Delete", new { id=item.IdVendedor })
         </td>
     </tr>
 }

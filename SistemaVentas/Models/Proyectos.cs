@@ -11,7 +11,8 @@ namespace SistemaVentas.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Proyectos
     {
         public int IdProyecto { get; set; }
@@ -19,7 +20,25 @@ namespace SistemaVentas.Models
         public decimal Importe { get; set; }
         public int IdVendedor { get; set; }
         public int Porcentaje { get; set; }
-    
+        public string Descripcion { get; set; }
+
+        //How long do you want your property to be at most ?
+        //(Best practice advices against magic numbers)
+        private int DescripcionLimit = 30;
+
+        //You probably need this if you want to use .LabelFor() 
+        //and let this property mimic the "full" one  
+        [Display(Name = "Main Biography")]
+        public string DescripcionTrimmed
+        {
+            get
+            {
+                if (this.Descripcion.Length > this.DescripcionLimit)
+                    return this.Descripcion.Substring(0, this.DescripcionLimit) + "...";
+                else
+                    return this.Descripcion;
+            }
+        }
         public virtual Vendedores Vendedores { get; set; }
     }
 }

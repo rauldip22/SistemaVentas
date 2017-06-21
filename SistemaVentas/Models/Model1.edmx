@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SistemaVentasModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SistemaVentasModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Proyectos">
           <Key>
             <PropertyRef Name="IdProyecto" />
@@ -14,6 +14,7 @@
           <Property Name="Importe" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="IdVendedor" Type="int" Nullable="false" />
           <Property Name="Porcentaje" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="text" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -55,8 +56,7 @@
             <End Role="Proyectos" EntitySet="Proyectos" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SistemaVentasModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -70,6 +70,7 @@
           <Property Name="IdVendedor" Type="Int32" Nullable="false" />
           <Property Name="Porcentaje" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Vendedores" Relationship="Self.FK_Proyectos_Vendedores" FromRole="Proyectos" ToRole="Vendedores" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -121,6 +122,7 @@
           <EntitySetMapping Name="Proyectos">
             <EntityTypeMapping TypeName="SistemaVentasModel.Proyectos">
               <MappingFragment StoreEntitySet="Proyectos">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="IdProyecto" ColumnName="IdProyecto" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Importe" ColumnName="Importe" />

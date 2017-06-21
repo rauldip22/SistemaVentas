@@ -19,7 +19,9 @@ namespace SistemaVentas.Controllers
         // GET: Vendedores/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            SistemaVentasEntities SistemaDB = new SistemaVentasEntities();
+            var vendedor = SistemaDB.Vendedores.First(x => x.IdVendedor == id);
+            return View(vendedor);
         }
 
         // GET: Vendedores/Create
@@ -87,22 +89,24 @@ namespace SistemaVentas.Controllers
         // GET: Vendedores/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            SistemaVentasEntities SistemaDB = new SistemaVentasEntities();
+            var vendedor = SistemaDB.Vendedores.First(x => x.IdVendedor == id);
+            return View(vendedor);
         }
 
         // POST: Vendedores/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
-            try
-            {
-                gestor.Eliminar(id);
-                return RedirectToAction("Listar");
-            }
-            catch
-            {
-                return View();
-            }
+            //try
+            //{
+            gestor.Eliminar(id);
+            return RedirectToAction("Listar");
+            //}
+            //catch
+            //{
+            //    return View();
+            //}
         }
     }
 }
