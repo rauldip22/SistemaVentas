@@ -40,13 +40,13 @@
             $@Html.DisplayFor(modelItem => item.Importe)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Porcentaje)%
+            @Html.DisplayFor(modelItem => item.Porcentaje)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Vendedores.Apellido)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DescripcionTrimmed)
+            @Html.DisplayFor(modelItem => item.Descripcion)
         </td>
         <td>
             @Html.ActionLink("Editar", "Edit", new { id=item.IdProyecto }) |

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace SistemaVentas.Models.AccesoDatos
 {
@@ -28,6 +29,17 @@ namespace SistemaVentas.Models.AccesoDatos
             var proyecto = SistemaDB.Proyectos.First(x => x.IdProyecto == id);
             SistemaDB.Proyectos.Remove(proyecto);
             SistemaDB.SaveChanges();
+        }
+
+        public Proyectos ObtenerProyectoPorId(int id)
+        {
+            var proyecto = SistemaDB.Proyectos.First(x => x.IdProyecto == id);
+            return proyecto;
+        }
+
+        public SelectList ObtenerListaDeVendedores()
+        {
+            return new SelectList(SistemaDB.Vendedores, "IdVendedor", "Apellido");
         }
 
         public void Modificar(Proyectos proyecto)

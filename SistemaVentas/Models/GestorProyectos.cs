@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace SistemaVentas.Models
 {
@@ -26,6 +27,16 @@ namespace SistemaVentas.Models
         public void Modificar(Proyectos proyecto)
         {
             repo.Modificar(proyecto);
+        }
+
+        public Proyectos ObtenerPoryectoPorId(int id)
+        {
+            return repo.ObtenerProyectoPorId(id);
+        }
+
+        public SelectList ObtenerListaDeVendedores()
+        {
+            return repo.ObtenerListaDeVendedores();
         }
     }
 }

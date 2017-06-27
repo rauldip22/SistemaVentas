@@ -1,6 +1,7 @@
 ﻿using SistemaVentas.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -19,16 +20,14 @@ namespace SistemaVentas.Controllers
         // GET: Proyectos/Details/5
         public ActionResult Details(int id)
         {
-            SistemaVentasEntities SistemaDB = new SistemaVentasEntities();
-            var proyecto = SistemaDB.Proyectos.First(x => x.IdProyecto == id);
+            var proyecto = gestor.ObtenerPoryectoPorId(id);
             return View(proyecto);
         }
 
         // GET: Proyectos/Create
         public ActionResult Create()
         {
-            SistemaVentasEntities SistemaDB = new SistemaVentasEntities();
-            ViewBag.VendedorId = new SelectList(SistemaDB.Vendedores, "IdVendedor", "Apellido");
+            ViewBag.VendedorId = gestor.ObtenerListaDeVendedores();
 
             return View();
         }
@@ -37,22 +36,31 @@ namespace SistemaVentas.Controllers
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
-            try
-            {
-                // TODO: Add insert logic here
-                Proyectos proyecto = new Proyectos();
-                proyecto.Nombre = collection["Nombre"];
-                proyecto.Porcentaje = Int32.Parse(collection["Porcentaje"]);
-                proyecto.Importe = Decimal.Parse(collection["Importe"]);
-                proyecto.Descripcion = collection["Descripcion"];
-                proyecto.IdVendedor = Int32.Parse(collection["IdVendedor"]);
-                gestor.Guardar(proyecto);
-                return RedirectToAction("Listar");
-            }
-            catch
-            {
-                return View();
-            }
+            //var x = collection["Importe"];
+            //var y = Decimal.Parse(x);
+            //var z = Math.Round(Convert.ToDecimal("344.56"), 2);
+            //try
+            //{
+            //    // TODO: Add insert logic here
+            //var style = NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands;
+            //var provider = new CultureInfo("es-AR");
+            Proyectos proyecto = new Proyectos();
+            proyecto.Nombre = collection["Nombre"];
+            proyecto.Porcentaje = collection["Porcentaje"];
+            proyecto.Importe = Decimal.Parse(collection["Importe"].Replace('.',','));
+            var dec = Decimal.Parse("234,56");
+            Console.WriteLine(proyecto.Importe);
+            Console.WriteLine(dec);
+            //proyecto.Importe = Convert.ToDecimal(collection["Importe"]);
+            proyecto.Descripcion = collection["Descripcion"];
+            proyecto.IdVendedor = Int32.Parse(collection["IdVendedor"]);
+            gestor.Guardar(proyecto);
+            return RedirectToAction("Listar");
+            //}
+            //catch
+            //{
+            //    return View();
+            //}
         }
 
         public ActionResult Listar()
@@ -64,9 +72,8 @@ namespace SistemaVentas.Controllers
         // GET: Proyectos/Edit/5
         public ActionResult Edit(int id)
         {
-            SistemaVentasEntities SistemaDB = new SistemaVentasEntities();
-            ViewBag.VendedorId = new SelectList(SistemaDB.Vendedores, "IdVendedor", "Apellido");
-            var proyecto = SistemaDB.Proyectos.First(x => x.IdProyecto == id);
+            ViewBag.VendedorId = gestor.ObtenerListaDeVendedores();
+            var proyecto = gestor.ObtenerPoryectoPorId(id);
             return View(proyecto);
         }
 
@@ -79,8 +86,8 @@ namespace SistemaVentas.Controllers
                 Proyectos proyecto = new Proyectos();
                 proyecto.IdProyecto = id;
                 proyecto.Nombre = collection["Nombre"];
-                proyecto.Porcentaje = Int32.Parse(collection["Porcentaje"]);
-                proyecto.Importe = Decimal.Parse(collection["Importe"]);
+                proyecto.Porcentaje = collection["Porcentaje"];
+                proyecto.Importe = Decimal.Parse(collection["Importe"].Replace('.', ','));
                 proyecto.Descripcion = collection["Descripcion"];
                 proyecto.IdVendedor = Int32.Parse(collection["IdVendedor"]);
                 gestor.Modificar(proyecto);
@@ -95,8 +102,7 @@ namespace SistemaVentas.Controllers
         // GET: Proyectos/Delete/5
         public ActionResult Delete(int id)
         {
-            SistemaVentasEntities SistemaDB = new SistemaVentasEntities();
-            var proyecto = SistemaDB.Proyectos.First(x => x.IdProyecto == id);
+            var proyecto = gestor.ObtenerPoryectoPorId(id);
             return View(proyecto);
         }
 

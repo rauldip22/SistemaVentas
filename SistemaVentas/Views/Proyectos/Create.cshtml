@@ -3,7 +3,20 @@
 @{
     ViewBag.Title = "Create";
 }
+@*<script type="text/javascript">
+    $.validator.methods.number = function (value, element) {
+        value = floatValue(value);
+        return this.optional(element) || !isNaN(value);
+    }
+    $.validator.methods.range = function (value, element, param) {
+        value = floatValue(value);
+        return this.optional(element) || (value >= param[0] && value <= param[1]);
+    }
 
+    function floatValue(value) {
+        return parseFloat(value.replace(",", "."));
+    }
+</script>*@
 <h2>Crear proyecto</h2>
 
 
@@ -43,7 +56,20 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Porcentaje, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Porcentaje, new { htmlAttributes = new { @class = "form-control" } })
+                @{
+                    var listaPorcentajes = new SelectList(
+                        new List<SelectListItem>
+                        {
+            new SelectListItem {Text = "40%", Value = "40%"},
+            new SelectListItem {Text = "60%", Value = "60%"},
+            new SelectListItem {Text = "80%", Value = "80%"},
+            new SelectListItem {Text = "Ganada", Value = "Ganada"},
+            new SelectListItem {Text = "Perdida", Value = "Perdida"},
+                        }, "Value", "Text");
+                }
+
+                @Html.DropDownListFor(model => model.Porcentaje, (SelectList)listaPorcentajes, "Seleccione", htmlAttributes: new { @class = "form-control" })
+                @*@Html.EditorFor(model => model.Porcentaje, new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.ValidationMessageFor(model => model.Porcentaje, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -71,3 +97,17 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+@*<script type="text/javascript">
+    $.validator.methods.number = function (value, element) {
+        value = floatValue(value);
+        return this.optional(element) || !isNaN(value);
+    }
+    $.validator.methods.range = function (value, element, param) {
+        value = floatValue(value);
+        return this.optional(element) || (value >= param[0] && value <= param[1]);
+    }
+
+    function floatValue(value) {
+        return parseFloat(value.replace(",", "."));
+    }
+</script>*@
