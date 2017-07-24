@@ -11,7 +11,8 @@ namespace SistemaVentas.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Proyectos
     {
         public int IdProyecto { get; set; }
@@ -20,6 +21,14 @@ namespace SistemaVentas.Models
         public int IdVendedor { get; set; }
         public string Porcentaje { get; set; }
         public string Descripcion { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}",
+               ApplyFormatInEditMode = true)]
+        public System.DateTime FechaCreacion { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}",
+               ApplyFormatInEditMode = true)]
+        public Nullable<System.DateTime> FechaCierre { get; set; }
+        [StringLength(2100)]
+        public string LinkNube { get; set; }
     
         public virtual Vendedores Vendedores { get; set; }
     }

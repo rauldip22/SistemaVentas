@@ -11,6 +11,13 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            Fecha de Creación
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaCreacion)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.Nombre)
         </dt>
 
@@ -31,9 +38,15 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Porcentaje)%
+            @Html.DisplayFor(model => model.Porcentaje)
         </dd>
+        <dt>
+            Fecha de Cierre
+        </dt>
 
+        <dd>
+            @Html.DisplayFor(model => model.FechaCierre)
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Descripcion)
         </dt>
@@ -43,11 +56,18 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Vendedores.Apellido)
+            Vendedor
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Vendedores.Apellido)
+        </dd>
+        <dt>
+            Documento Relacionado
+        </dt>
+
+        <dd>
+            <a href=@Html.DisplayFor(model => model.LinkNube)>@Html.DisplayFor(model => model.LinkNube)</a>
         </dd>
 
     </dl>

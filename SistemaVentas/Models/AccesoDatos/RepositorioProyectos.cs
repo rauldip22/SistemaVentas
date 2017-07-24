@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -51,8 +53,13 @@ namespace SistemaVentas.Models.AccesoDatos
             proyectoParaModificar.Porcentaje = proyecto.Porcentaje;
             proyectoParaModificar.Descripcion = proyecto.Descripcion;
             proyectoParaModificar.IdVendedor = proyecto.IdVendedor;
-
+            proyectoParaModificar.FechaCierre = proyecto.FechaCierre;
+            proyectoParaModificar.LinkNube = proyecto.LinkNube;
             SistemaDB.SaveChanges();
+           
+            
+            
+            
         }
     }
 }

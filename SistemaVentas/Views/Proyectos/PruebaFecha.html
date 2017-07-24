@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<link href="~/Content/jquery-ui.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-ui.js"></script>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <script>
+
+        $(function () {
+            $('#txtDatePicker').datepicker(
+                {
+                    dateFormat: 'dd/mm/yy',
+                    changeMonth: true,
+                    changeYear: true,
+                    yearRange: '1950:2100'
+                });
+        })
+    </script>
+</body>
+
+
+</html>
+

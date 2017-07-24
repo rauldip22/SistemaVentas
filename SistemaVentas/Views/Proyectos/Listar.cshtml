@@ -12,6 +12,9 @@
 <table class="table">
     <tr>
         <th>
+            Creación
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Nombre)
         </th>
         <th>
@@ -21,18 +24,22 @@
             @Html.DisplayNameFor(model => model.Porcentaje)
         </th>
         <th>
-            Vendedor
-            @*@Html.DisplayNameFor(model => model.Vendedores.Apellido)*@
+            Cierre
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Descripcion)
-
+            Vendedor
+        </th>
+        <th>
+            Documento Relacionado
         </th>
         <th></th>
     </tr>
-
+    
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaCreacion)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Nombre)
         </td>
@@ -43,10 +50,16 @@
             @Html.DisplayFor(modelItem => item.Porcentaje)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.FechaCierre)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Vendedores.Apellido)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Descripcion)
+            @if (item.LinkNube != null && item.LinkNube != "" && item.LinkNube != " ")
+            {
+                <a href=@Html.DisplayFor(modelItem => item.LinkNube)>Link</a>
+            }
         </td>
         <td>
             @Html.ActionLink("Editar", "Edit", new { id=item.IdProyecto }) |

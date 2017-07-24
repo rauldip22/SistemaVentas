@@ -15,6 +15,9 @@
           <Property Name="IdVendedor" Type="int" Nullable="false" />
           <Property Name="Porcentaje" Type="nchar" MaxLength="25" Nullable="false" />
           <Property Name="Descripcion" Type="text" />
+          <Property Name="FechaCreacion" Type="date" Nullable="false" />
+          <Property Name="FechaCierre" Type="date" />
+          <Property Name="LinkNube" Type="nchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -97,11 +100,14 @@
           </Key>
           <Property Name="IdProyecto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="70" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Importe" Type="Decimal" Nullable="false" />
+          <Property Name="Importe" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="IdVendedor" Type="Int32" Nullable="false" />
           <Property Name="Porcentaje" Type="String" Nullable="false" MaxLength="25" Unicode="true" FixedLength="true" />
           <NavigationProperty Name="Vendedores" Relationship="Self.FK_Proyectos_Vendedores" FromRole="Proyectos" ToRole="Vendedores" />
           <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FechaCierre" Type="DateTime" Precision="0" />
+          <Property Name="LinkNube" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -194,6 +200,9 @@
           <EntitySetMapping Name="Proyectos">
             <EntityTypeMapping TypeName="SistemaVentasModel.Proyectos">
               <MappingFragment StoreEntitySet="Proyectos">
+                <ScalarProperty Name="LinkNube" ColumnName="LinkNube" />
+                <ScalarProperty Name="FechaCierre" ColumnName="FechaCierre" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="IdProyecto" ColumnName="IdProyecto" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />

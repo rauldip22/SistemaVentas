@@ -36,22 +36,23 @@ namespace SistemaVentas.Controllers
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
-            //var x = collection["Importe"];
-            //var y = Decimal.Parse(x);
-            //var z = Math.Round(Convert.ToDecimal("344.56"), 2);
             //try
             //{
-            //    // TODO: Add insert logic here
-            //var style = NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands;
-            //var provider = new CultureInfo("es-AR");
+
             Proyectos proyecto = new Proyectos();
             proyecto.Nombre = collection["Nombre"];
             proyecto.Porcentaje = collection["Porcentaje"];
-            proyecto.Importe = Decimal.Parse(collection["Importe"].Replace('.',','));
-            var dec = Decimal.Parse("234,56");
-            Console.WriteLine(proyecto.Importe);
-            Console.WriteLine(dec);
-            //proyecto.Importe = Convert.ToDecimal(collection["Importe"]);
+            proyecto.Importe = Decimal.Parse(collection["Importe"].Replace('.', ','));
+            proyecto.FechaCreacion = DateTime.Today.Date;
+            proyecto.FechaCierre = DateTime.Parse(collection["FechaCierre"]);
+            if(collection["LinkNube"] == "")
+            {
+                proyecto.LinkNube = null;
+            }
+            else
+            {
+                proyecto.LinkNube = collection["LinkNube"];
+            }
             proyecto.Descripcion = collection["Descripcion"];
             proyecto.IdVendedor = Int32.Parse(collection["IdVendedor"]);
             gestor.Guardar(proyecto);
@@ -64,39 +65,49 @@ namespace SistemaVentas.Controllers
         }
 
         public ActionResult Listar()
-        {
-            var proyectos = gestor.Listar();
-            return View(proyectos);
-        }
+            {
+                var proyectos = gestor.Listar();
+                return View(proyectos);
+            }
 
-        // GET: Proyectos/Edit/5
-        public ActionResult Edit(int id)
-        {
-            ViewBag.VendedorId = gestor.ObtenerListaDeVendedores();
-            var proyecto = gestor.ObtenerPoryectoPorId(id);
-            return View(proyecto);
-        }
+            // GET: Proyectos/Edit/5
+            public ActionResult Edit(int id)
+            {
+                ViewBag.VendedorId = gestor.ObtenerListaDeVendedores();
+                var proyecto = gestor.ObtenerPoryectoPorId(id);
+                return View(proyecto);
+            }
 
         // POST: Proyectos/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
-            try
+            //try
+            //{
+            Proyectos proyecto = new Proyectos();
+            proyecto.IdProyecto = id;
+            proyecto.Nombre = collection["Nombre"];
+            proyecto.Porcentaje = collection["Porcentaje"];
+            proyecto.Importe = Decimal.Parse(collection["Importe"].Replace('.', ','));
+            proyecto.FechaCreacion = DateTime.Today.Date;
+            proyecto.FechaCierre = DateTime.Parse(collection["FechaCierre"]);
+            if (collection["LinkNube"] == "")
             {
-                Proyectos proyecto = new Proyectos();
-                proyecto.IdProyecto = id;
-                proyecto.Nombre = collection["Nombre"];
-                proyecto.Porcentaje = collection["Porcentaje"];
-                proyecto.Importe = Decimal.Parse(collection["Importe"].Replace('.', ','));
-                proyecto.Descripcion = collection["Descripcion"];
-                proyecto.IdVendedor = Int32.Parse(collection["IdVendedor"]);
-                gestor.Modificar(proyecto);
-                return RedirectToAction("Listar");
+                proyecto.LinkNube = null;
             }
-            catch
+            else
             {
-                return View();
+                proyecto.LinkNube = collection["LinkNube"].Trim();
             }
+            proyecto.Descripcion = collection["Descripcion"];
+            proyecto.IdVendedor = Int32.Parse(collection["IdVendedor"]);
+            gestor.Modificar(proyecto);
+            return RedirectToAction("Listar");
+            //}
+            //catch
+            //{
+            //    return View();
+            //}
         }
 
         // GET: Proyectos/Delete/5
@@ -122,6 +133,6 @@ namespace SistemaVentas.Controllers
             }
         }
 
-    
+
     }
 }
