@@ -55,6 +55,17 @@ namespace SistemaVentas.Controllers
             }
             proyecto.Descripcion = collection["Descripcion"];
             proyecto.IdVendedor = Int32.Parse(collection["IdVendedor"]);
+            if(collection["Moneda"] == null)
+            {
+                proyecto.Moneda = "ARS";
+            }
+            else
+            {
+                proyecto.Moneda = collection["Moneda"];
+            }
+            proyecto.Observaciones = collection["Observaciones"];
+            proyecto.Status = collection["Status"];
+            proyecto.Competidores = collection["Competidores"];
             gestor.Guardar(proyecto);
             return RedirectToAction("Listar");
             //}

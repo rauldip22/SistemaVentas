@@ -17,7 +17,11 @@
           <Property Name="Descripcion" Type="text" />
           <Property Name="FechaCreacion" Type="date" Nullable="false" />
           <Property Name="FechaCierre" Type="date" />
-          <Property Name="LinkNube" Type="nchar" MaxLength="100" />
+          <Property Name="LinkNube" Type="nchar" MaxLength="2500" />
+          <Property Name="Moneda" Type="nchar" MaxLength="15" />
+          <Property Name="Status" Type="nchar" MaxLength="150" />
+          <Property Name="Competidores" Type="nchar" MaxLength="150" />
+          <Property Name="Observaciones" Type="nchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -107,7 +111,11 @@
           <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="FechaCierre" Type="DateTime" Precision="0" />
-          <Property Name="LinkNube" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="LinkNube" Type="String" MaxLength="2500" FixedLength="true" Unicode="true" />
+          <Property Name="Moneda" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="150" FixedLength="true" Unicode="true" />
+          <Property Name="Competidores" Type="String" MaxLength="150" FixedLength="true" Unicode="true" />
+          <Property Name="Observaciones" Type="String" MaxLength="500" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -200,6 +208,10 @@
           <EntitySetMapping Name="Proyectos">
             <EntityTypeMapping TypeName="SistemaVentasModel.Proyectos">
               <MappingFragment StoreEntitySet="Proyectos">
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="Competidores" ColumnName="Competidores" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Moneda" ColumnName="Moneda" />
                 <ScalarProperty Name="LinkNube" ColumnName="LinkNube" />
                 <ScalarProperty Name="FechaCierre" ColumnName="FechaCierre" />
                 <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />

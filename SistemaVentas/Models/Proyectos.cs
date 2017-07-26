@@ -27,8 +27,11 @@ namespace SistemaVentas.Models
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}",
                ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> FechaCierre { get; set; }
-        [StringLength(2100)]
         public string LinkNube { get; set; }
+        public string Moneda { get; set; }
+        public string Status { get; set; }
+        public string Competidores { get; set; }
+        public string Observaciones { get; set; }
     
         public virtual Vendedores Vendedores { get; set; }
     }

@@ -5,8 +5,8 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="0ab0290369f342af8e68387a41f86031" Name="Diagram1">
-        <EntityTypeShape EntityType="SistemaVentasModel.Proyectos" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SistemaVentasModel.sysdiagrams" Width="1.5" PointX="5.375" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaVentasModel.Proyectos" Width="1.5" PointX="2.875" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaVentasModel.sysdiagrams" Width="1.5" PointX="6" PointY="1.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaVentasModel.Vendedores" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
         <AssociationConnector Association="SistemaVentasModel.FK_Proyectos_Vendedores" ManuallyRouted="false" />
       </Diagram>

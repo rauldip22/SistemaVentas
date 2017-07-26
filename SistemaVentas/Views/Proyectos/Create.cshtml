@@ -29,6 +29,10 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Importe, new { htmlAttributes = new { @class = "form-control", placeholder = "Ingrese el Importe" } })
                 @Html.ValidationMessageFor(model => model.Importe, "", new { @class = "text-danger" })
+                Pesos
+                @Html.RadioButtonFor(model => model.Moneda, "ARS", new { Checked = "checked" })
+                Dólares
+                @Html.RadioButtonFor(model => model.Moneda, "USD")
             </div>
         </div>
 
@@ -69,10 +73,45 @@
         </div>
         
         <div class="form-group">
-            @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Descripcion, "Descripción", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control", placeholder = "Ingrese una Descripción" } })
+                @{
+                    var listaDescripciones = new SelectList(
+                        new List<SelectListItem>
+                        {
+                        new SelectListItem {Text = "Cableado", Value = "Cableado"},
+                        new SelectListItem {Text = "Comunicaciones", Value = "Comunicaciones"},
+                        new SelectListItem {Text = "Cámaras de seguridad", Value = "Cámaras de seguridad"},
+                        new SelectListItem {Text = "Enlaces inálabricos", Value = "Enlaces inálabricos"},
+                        new SelectListItem {Text = "Contratos de alquileres y servicios", Value = "Contratos de alquileres y servicios"},
+                        new SelectListItem {Text = "Servicios especiales", Value = "Sericios especiales"},
+                        }, "Value", "Text");
+                }
+                @Html.DropDownListFor(model => model.Descripcion, (SelectList)listaDescripciones, "Seleccione", htmlAttributes: new { @class = "form-control" })                
                 @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Observaciones, "Observaciones", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Observaciones, new { htmlAttributes = new { @class = "form-control", placeholder = "Ingrese Observaciones" } })
+                @Html.ValidationMessageFor(model => model.Observaciones, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.Status, "Status", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control", placeholder = "Ingrese el estado actual del Proyecto" } })
+                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.Competidores, "Competidores", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Competidores, new { htmlAttributes = new { @class = "form-control", placeholder = "Ingrese los Competidores" } })
+                @Html.ValidationMessageFor(model => model.Competidores, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -87,7 +126,7 @@
                       
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Crear" class="btn btn-default" />
             </div>
         </div>
 

@@ -32,7 +32,13 @@
         <dd>
             $@Html.DisplayFor(model => model.Importe)
         </dd>
+        <dt>
+            Vendedor
+        </dt>
 
+        <dd>
+            @Html.DisplayFor(model => model.Vendedores.Apellido)
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Porcentaje)
         </dt>
@@ -54,13 +60,26 @@
         <dd>
             @Html.DisplayFor(model => model.Descripcion)
         </dd>
-
         <dt>
-            Vendedor
+            @Html.DisplayNameFor(model => model.Observaciones)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Vendedores.Apellido)
+            @Html.DisplayFor(model => model.Observaciones)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Competidores)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Competidores)
         </dd>
         <dt>
             Documento Relacionado
