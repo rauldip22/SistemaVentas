@@ -1,8 +1,6 @@
 ﻿using SistemaVentas.Models.AccesoDatos;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace SistemaVentas.Models
@@ -18,6 +16,20 @@ namespace SistemaVentas.Models
         public List<Proyectos> Listar()
         {
             return repo.Listar();
+        }
+
+        public List<Proyectos> ListarProyectosPorVendedorYFecha(int idV, DateTime fInicio, DateTime fFin)
+        {
+            var proyectos = repo.Listar();
+            var proyectosFiltrados = new List<Proyectos>();
+            foreach(Proyectos proyecto in proyectos)
+            {
+                if(proyecto.IdVendedor == idV && proyecto.FechaCierre > fInicio && proyecto.FechaCierre < fFin)
+                {
+                    proyectosFiltrados.Add(proyecto);
+                }
+            }
+            return proyectosFiltrados;
         }
 
         public void Eliminar(int id)

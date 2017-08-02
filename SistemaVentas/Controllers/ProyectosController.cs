@@ -74,7 +74,11 @@ namespace SistemaVentas.Controllers
             //    return View();
             //}
         }
-
+        public ActionResult BuscarEstadisticas()
+        {
+            ViewBag.VendedorId = gestor.ObtenerListaDeVendedores();
+            return View();
+        }
         public ActionResult Listar()
             {
                 var proyectos = gestor.Listar();

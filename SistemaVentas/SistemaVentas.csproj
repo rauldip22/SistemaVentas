@@ -267,6 +267,7 @@
     <Content Include="Views\Proyectos\Delete.cshtml" />
     <Content Include="Views\Proyectos\Details.cshtml" />
     <Content Include="Views\Vendedores\Details.cshtml" />
+    <Content Include="Views\Proyectos\BuscarEstadisticas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

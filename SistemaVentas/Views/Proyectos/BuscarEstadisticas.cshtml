@@ -1,0 +1,114 @@
+﻿@model SistemaVentas.Models.Proyectos
+
+@{
+    ViewBag.Title = "Estadisticas";
+}
+<link type="text/css" href="~/Content/jquery-ui.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-ui.js"></script>
+<h2>Generar Estadísticas</h2>
+
+
+@using (Html.BeginForm("ResultadosBusqueda", "Proyectos"))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Proyectos</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        
+        <div class="form-group">
+            @Html.Label("Vendedor", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("IdVendedor", (SelectList)ViewBag.VendedorId, "Seleccione", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.IdVendedor, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Desde", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("FechaInicio", new { htmlAttributes = new { @class = "form-control", placeholder = "Haga click para seleccionar la Fecha" } })
+                @Html.ValidationMessageFor(model => model.FechaCierre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Hasta", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Descripcion", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @{
+                    var listaDescripciones = new SelectList(
+                        new List<SelectListItem>
+                        {
+                        new SelectListItem {Text = "Todos", Value = "Todos"},
+                        new SelectListItem {Text = "Cableado", Value = "Cableado"},
+                        new SelectListItem {Text = "Comunicaciones", Value = "Comunicaciones"},
+                        new SelectListItem {Text = "Cámaras de seguridad", Value = "Cámaras de seguridad"},
+                        new SelectListItem {Text = "Enlaces inálabricos", Value = "Enlaces inálabricos"},
+                        new SelectListItem {Text = "Contratos de alquileres y servicios", Value = "Contratos de alquileres y servicios"},
+                        new SelectListItem {Text = "Servicios especiales", Value = "Serivios especiales"},
+                        }, "Value", "Text");
+                }
+                @Html.DropDownListFor(model => model.Descripcion, (SelectList)listaDescripciones, "Seleccione", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Generar" class="btn btn-default" />
+            </div>
+        </div>
+
+
+    </div>
+                    }
+<div>
+    @Html.ActionLink("Volver a la lista", "Listar")
+</div>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#datepicker").datepicker({
+            dateFormat: "dd/mm/yy",
+            changeMonth: true,
+            changeYear: true,
+            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+            dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+            dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
+            dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+            yearRange: "-1:+20"
+        });
+        
+        $.validator.addMethod('date',
+            function (value, element, params) {
+                if (this.optional(element)) {
+                    return true;
+                }
+                var ok = true;
+                try {
+                    $.datepicker.parseDate('dd/mm/yy', value);
+                }
+                catch (err) {
+                    ok = false;
+                }
+                return ok;
+            });
+
+    });
+</script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+}
+
+
