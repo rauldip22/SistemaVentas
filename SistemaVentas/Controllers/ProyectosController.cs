@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace SistemaVentas.Controllers
 {
     public class ProyectosController : Controller
@@ -45,7 +46,7 @@ namespace SistemaVentas.Controllers
             proyecto.Importe = Decimal.Parse(collection["Importe"].Replace('.', ','));
             proyecto.FechaCreacion = DateTime.Today.Date;
             proyecto.FechaCierre = DateTime.Parse(collection["FechaCierre"]);
-            if(collection["LinkNube"] == "")
+            if (collection["LinkNube"] == "")
             {
                 proyecto.LinkNube = null;
             }
@@ -55,7 +56,7 @@ namespace SistemaVentas.Controllers
             }
             proyecto.Descripcion = collection["Descripcion"];
             proyecto.IdVendedor = Int32.Parse(collection["IdVendedor"]);
-            if(collection["Moneda"] == null)
+            if (collection["Moneda"] == null)
             {
                 proyecto.Moneda = "ARS";
             }
@@ -77,21 +78,44 @@ namespace SistemaVentas.Controllers
         public ActionResult BuscarEstadisticas()
         {
             ViewBag.VendedorId = gestor.ObtenerListaDeVendedores();
+
             return View();
         }
-        public ActionResult Listar()
-            {
-                var proyectos = gestor.Listar();
-                return View(proyectos);
-            }
 
-            // GET: Proyectos/Edit/5
-            public ActionResult Edit(int id)
+        public ActionResult ResultadoEstadisticas(string Desde, string Hasta, int IdVendedor, string Filtro)
+        {
+            List<ElementoEstadistico> valores = new List<ElementoEstadistico>();
+            if (Filtro == "T")
             {
-                ViewBag.VendedorId = gestor.ObtenerListaDeVendedores();
-                var proyecto = gestor.ObtenerPoryectoPorId(id);
-                return View(proyecto);
+                valores = gestor.ListarProyectosPorFecha(DateTime.Parse(Desde), DateTime.Parse(Hasta));
+                   
             }
+            else
+            {
+                valores = gestor.ListarProyectosPorFecha(DateTime.Parse(Desde), DateTime.Parse(Hasta), IdVendedor);
+                var gestorV = new GestorVendedores();
+                var vendedor = gestorV.obtenerVendedorPorId(IdVendedor);
+                ViewBag.Nombre = vendedor.Nombre;
+                ViewBag.Apellido = vendedor.Apellido;
+                
+            }
+            ViewBag.Filtro = Filtro;
+            return View(valores);
+        }
+        
+        public ActionResult Listar()
+        {
+            var proyectos = gestor.Listar();
+            return View(proyectos);
+        }
+
+        // GET: Proyectos/Edit/5
+        public ActionResult Edit(int id)
+        {
+            ViewBag.VendedorId = gestor.ObtenerListaDeVendedores();
+            var proyecto = gestor.ObtenerPoryectoPorId(id);
+            return View(proyecto);
+        }
 
         // POST: Proyectos/Edit/5
         [HttpPost]

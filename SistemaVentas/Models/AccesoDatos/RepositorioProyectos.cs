@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 
 namespace SistemaVentas.Models.AccesoDatos
 {
@@ -44,6 +45,10 @@ namespace SistemaVentas.Models.AccesoDatos
             return new SelectList(SistemaDB.Vendedores, "IdVendedor", "Apellido");
         }
 
+        public SelectList ObtenerListaDeVendedoresConTodos()
+        {
+            return new SelectList(SistemaDB.Vendedores, "IdVendedor", "Apellido");
+        }
         public void Modificar(Proyectos proyecto)
         {
             var proyectoParaModificar = SistemaDB.Proyectos.First(x => x.IdProyecto == proyecto.IdProyecto);

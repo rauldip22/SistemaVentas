@@ -30,6 +30,11 @@ namespace SistemaVentas.Models.AccesoDatos
             SistemaDB.SaveChanges();
         }
 
+        internal Vendedores obtenerVendedorPorId(int id)
+        {
+            return SistemaDB.Vendedores.First(x => x.IdVendedor == id);
+        }
+
         public void Modificar(Vendedores vendedor)
         {
             var vendedorParaModificar = SistemaDB.Vendedores.First(x => x.IdVendedor == vendedor.IdVendedor);

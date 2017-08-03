@@ -1,0 +1,36 @@
+﻿@model IEnumerable<SistemaVentas.Models.ElementoEstadistico>
+
+@{
+    ViewBag.Title = "Resultado Estadisticas";
+}
+
+<h2>Resultado Estadisticas</h2>
+@{
+    if (ViewBag.Filtro == "V")
+    {
+        <h3>Resultados de @ViewBag.Apellido, @ViewBag.Nombre</h3>
+    }
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Porcentaje)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Valor)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Porcentaje)
+        </td>
+        <td>
+            $@Html.DisplayFor(modelItem => item.Valor)
+        </td>
+    </tr>
+}
+
+</table>

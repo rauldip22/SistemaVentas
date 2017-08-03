@@ -27,5 +27,9 @@ namespace SistemaVentas.Models
         {
             repo.Modificar(vendedor);
         }
+        public Vendedores obtenerVendedorPorId(int id)
+        {
+            return repo.obtenerVendedorPorId(id);
+        }
     }
 }
